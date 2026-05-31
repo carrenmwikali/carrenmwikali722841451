@@ -34,6 +34,19 @@ const upcomingTopics = [
 ]
 
 export default function BlogPage() {
+  const articles = [
+    {
+      id: "season1-reflection",
+      title: "We Went In Blind. Here's What We Found.",
+      excerpt: "A season of reflections on five conversations, one ambitious production learning curve, and why we're coming back.",
+      authors: "Carren Mwanzia & Madhuri Mukherjee",
+      date: "January 2025",
+      category: "Reflection",
+      readTime: "8 min read",
+      featured: true,
+    },
+  ]
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -57,33 +70,38 @@ export default function BlogPage() {
           </div>
         </section>
 
-        {/* Coming Soon Section */}
+        {/* Featured Article */}
         <section className="py-12 md:py-20">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="w-20 h-20 bg-[#FECE00]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Bell className="h-10 w-10 text-[#156159]" />
-              </div>
-              <Badge className="mb-4 bg-[#FECE00] text-black">Coming Soon</Badge>
-              <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-4">
-                Our Blog is Launching Soon
-              </h2>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                We&apos;re preparing thoughtful content on gender-transformative solutions, 
-                changemaker stories, and insights on feminist systems change. 
-                Subscribe to be notified when we publish our first articles.
-              </p>
-              <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-8">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-[#156159]"
-                  required
-                />
-                <Button type="submit" className="bg-[#156159] hover:bg-[#156159]/90">
-                  Notify Me
-                </Button>
-              </form>
+            <div className="max-w-4xl mx-auto">
+              {articles.map((article) => (
+                <Link key={article.id} href={`/blog/${article.id}`} className="block group">
+                  <Card className="border-0 shadow-md hover:shadow-lg transition-all overflow-hidden bg-white">
+                    <CardContent className="p-8 md:p-12">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Badge className="bg-[#156159] text-white">{article.category}</Badge>
+                        <span className="text-sm text-muted-foreground">{article.readTime}</span>
+                      </div>
+                      <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-4 group-hover:text-[#156159] transition-colors">
+                        {article.title}
+                      </h2>
+                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                        {article.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <div className="text-sm text-muted-foreground">
+                          <p className="font-medium text-foreground">{article.authors}</p>
+                          <p>{article.date}</p>
+                        </div>
+                        <Button variant="ghost" className="text-[#156159] hover:bg-[#156159]/10 gap-2">
+                          Read Full Article
+                          <ArrowRight className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
@@ -92,9 +110,9 @@ export default function BlogPage() {
         <section className="py-12 md:py-20 bg-muted">
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4 border-[#156159] text-[#156159]">What to Expect</Badge>
+              <Badge variant="outline" className="mb-4 border-[#156159] text-[#156159]">Coming Next</Badge>
               <h2 className="font-serif text-3xl md:text-4xl tracking-tight">
-                Topics We&apos;ll Cover
+                More Stories to Come
               </h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
